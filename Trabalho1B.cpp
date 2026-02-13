@@ -120,30 +120,62 @@ void molduraExibir(int &recEsq, int &recDir, int &priLinha){
 	}
 }
 
-void salvarArquivo(char nomeArq[50]){}
+void salvarArquivo(){}
 
 int main(){
 	char resp;
 	int recEsq=2, recDir=78, priLinha=3, pos=recEsq;
+	listaPrin *L;
+	listaPalavra *Letras;
+	
+	
 	moldura();
+	gotoxy(recEsq, priLinha);
 	do{
-		gotoxy(recEsq+3, priLinha);
-		if(resp == 63){
+		
+		if(resp == 63){ // chama funcao do f5
 			molduraExibir(recEsq, recDir, priLinha);
 			limparTela();
 			gotoxy(18,2);
 			printf("F2-ABRIR  F3-SALVAR  F4-SAIR  F5-EXIBIR ");
 			gotoxy(pos, priLinha);
 		}
-		if(pos < recDir){
+		
+		if(resp == 61){	//comando do f3
+			salvarArquivo();
+			limparTela();
+			gotoxy(2,4);
+			printf("ARQUIVO SALVO COM SUCESSO");
+			gotoxy(18,2);
+			printf("F2-ABRIR  F3-SALVAR  F4-SAIR  F5-EXIBIR ");
+			gotoxy(pos, priLinha);
+		}
+		
+		if(resp == 8){ //comando do backspace
+			if(pos > recEsq){
+				gotoxy(--pos,priLinha);
+				printf(" ");
+				gotoxy(--pos,priLinha);
+			}
+		}
+		
+		if(pos < recDir){ // controla os recuos direitos e esquerdo
 			gotoxy(++pos,priLinha);
 		}
 		else{
 			gotoxy(recEsq,++priLinha);
 			pos=recEsq;
 		}
+		
 		resp = getche();
 	}while(resp != 62); //f4
 	
 }
 //f4 = 62, f5 = 63
+//delete= 83
+//Home = 71
+//End = 79
+//pageUp = 73
+//pagedown = 81
+//insert = 82
+//f10 = 68

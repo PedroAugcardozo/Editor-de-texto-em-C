@@ -1,26 +1,34 @@
 struct listaPalavra{
-	ListaPalavra *ant, *prox;;
+	listaPalavra *ant, *prox;;
 	char letra;
 };typedef struct listaPalavra ListaPalavra;
 struct listaPrin{
 	int num;
-	ListaPrin *botton, *top;
-	ListaPalavra *lista;
+	listaPrin *botton, *top;
+	listaPalavra *lista;
 };typedef struct listaPrin ListaPrin;
 
-void iniciarListaPrin(ListaPrin **L);
-void iniciarListaPalavra(ListaPalavra **L);
-char filaPrinVazia(ListaPrin **L);
-char filaPalavraVazia(ListaPalavra **L);
-void retirarFilaPrin(ListaPrin **L);
-void retirarFilaPalavra(ListaPalavra **L);
-void inserirFilaPrin(ListaPrin **L);
-void inserirFilaPalavra(ListaPalavra **L);
+void iniciarListaPrin(listaPrin **L);
+void iniciarListaPalavra(listaPalavra **L);
+char filaPrinVazia(listaPrin *L);
+char filaPalavraVazia(listaPalavra *L);
+void retirarFilaPrin(listaPrin **L);
+void retirarFilaPalavra(listaPalavra **L);
+void inserirFilaPrin(listaPrin **L);
+void inserirFilaPalavra(listaPalavra **L);
 
-void iniciarListaPrin(ListaPrin **L){
-	*L = malloc(sizeof(ListaPrin));
-	*L.num = 0;
-	*L.botton = NULL;
-	*L.top = NULL;
-	*L.lista = NULL;
+void iniciarListaPrin(listaPrin **L){
+	*L = NULL;
 }
+void iniciarListaPalavra(listaPalavra **L){
+	*L = NULL;
+}
+
+char filaPrinVazia(listaPrin *L){
+	return L == NULL;
+}
+
+char filaPalavraVazia(listaPalavra *L){
+	
+}
+
