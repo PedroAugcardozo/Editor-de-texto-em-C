@@ -124,47 +124,63 @@ void salvarArquivo(){}
 
 int main(){
 	char resp;
-	int recEsq=2, recDir=78, priLinha=3, pos=recEsq;
+	int recEsq=2, recDir=78, priLinha=3, pos[2];  // a posicao 0 do vetor é o eixo X e a posicao 1 é o eixo Y
 	listaPrin *L;
 	listaPalavra *Letras;
-	
+	pos[0] = recEsq; pos[1] = priLinha;
 	
 	moldura();
 	gotoxy(recEsq, priLinha);
 	do{
 		
-		if(resp == 63){ // chama funcao do f5
+		if(resp == 63)
+		{ // chama funcao do f5
 			molduraExibir(recEsq, recDir, priLinha);
 			limparTela();
 			gotoxy(18,2);
 			printf("F2-ABRIR  F3-SALVAR  F4-SAIR  F5-EXIBIR ");
-			gotoxy(pos, priLinha);
+			gotoxy(pos[0], pos[1]);
 		}
 		
-		if(resp == 61){	//comando do f3
+		if(resp == 61)
+		{	//comando do f3
 			salvarArquivo();
 			limparTela();
 			gotoxy(2,4);
 			printf("ARQUIVO SALVO COM SUCESSO");
 			gotoxy(18,2);
 			printf("F2-ABRIR  F3-SALVAR  F4-SAIR  F5-EXIBIR ");
-			gotoxy(pos, priLinha);
+			gotoxy(pos[0], pos[1]);
 		}
 		
-		if(resp == 8){ //comando do backspace
-			if(pos > recEsq){
-				gotoxy(--pos,priLinha);
+		if(resp == 8)
+		{ //comando do backspace
+			if(pos[0] > recEsq)
+			{
+				gotoxy(--pos[0],pos[1]);
 				printf(" ");
-				gotoxy(--pos,priLinha);
+				gotoxy(--pos[0],pos[1]);
+			}
+			else
+			{
+				if(pos[1] > priLinha)
+				{
+					pos[0]=recDir;
+					gotoxy(pos[0], --pos[1]);
+					printf(" ");
+					gotoxy(--pos[0], pos[1]);
+				}
 			}
 		}
 		
-		if(pos < recDir){ // controla os recuos direitos e esquerdo
-			gotoxy(++pos,priLinha);
+		if(pos[0] < recDir)
+		{ // controla os recuos direitos e esquerdo
+			gotoxy(++pos[0],pos[1]);
 		}
-		else{
-			gotoxy(recEsq,++priLinha);
-			pos=recEsq;
+		else
+		{
+			gotoxy(recEsq,++pos[1]);
+			pos[0]=recEsq;
 		}
 		
 		resp = getche();
